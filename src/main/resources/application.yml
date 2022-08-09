@@ -13,3 +13,13 @@ spring:
     console:
       enabled: true
       path: /h2
+  kafka:
+    consumer:
+      bootstrap-servers: 127.0.0.1:9092
+      group-id: restaurante
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: com.zcoders.restaurante.listener.NovoPedidoDeserializer
+      topic:
+        novo-pedido: PEDIDO_NOVO
+        pedido-cancelado: PEDIDO_CANCELADO
