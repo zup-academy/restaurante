@@ -16,8 +16,8 @@ public class NovoPedidoListener {
     PedidoRepository pedidoRepository;
 
     @KafkaListener(topics = "${spring.kafka.consumer.topic.novo-pedido}")
-    public void recebe( ){
+    public void recebe(NovoPedidoEvent novoPedidoEvent ){
 
-        logger.info("Evento lido com sucesso idCompra: {}");
+        logger.info("Evento lido com sucesso idCompra: {}", novoPedidoEvent.toString());
     }
 }

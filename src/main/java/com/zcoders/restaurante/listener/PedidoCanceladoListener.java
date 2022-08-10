@@ -20,9 +20,9 @@ public class PedidoCanceladoListener {
 
     @KafkaListener(topics = "${spring.kafka.consumer.topic.pedido-cancelado}" ,
             containerFactory = "pedidoCanceladoKafkaListenerContainerFactory")
-    public void recebe(){
+    public void recebe(PedidoCanceladoEvent pedidoCanceladoEvent){
 
-        logger.info("Evento lido com sucesso idCompra: {}");
+        logger.info("Evento PEDIDO CANCELADO lido com sucesso: {}", pedidoCanceladoEvent.toString());
     }
 
 }

@@ -6,15 +6,15 @@ import org.apache.kafka.common.serialization.Deserializer;
 
 import java.io.IOException;
 
-public class PedidoCanceladoDeserializer implements Deserializer<NovoPedidoEvent> {
+public class PedidoCanceladoDeserializer implements Deserializer<PedidoCanceladoEvent> {
 
     private final ObjectMapper objectMapper = new ObjectMapper();
 
     @Override
-    public NovoPedidoEvent deserialize(String s, byte[] data) {
+    public PedidoCanceladoEvent deserialize(String s, byte[] data) {
         try {
             System.out.println("AAAAAAAAAAA");
-            return objectMapper.readValue(data, NovoPedidoEvent.class);
+            return objectMapper.readValue(data, PedidoCanceladoEvent.class);
         } catch (IOException e) {
             System.out.println("BBBBBBBBBBBBB");
             throw new SerializationException(e);

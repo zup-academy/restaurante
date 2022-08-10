@@ -30,14 +30,14 @@ public class PedidoCanceladoListenerConfiguration {
         properties.put(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapAddress);
         properties.put(ConsumerConfig.GROUP_ID_CONFIG, groupId);
         properties.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class);
-        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, new PedidoCanceladoDeserializer() );
+        properties.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, PedidoCanceladoDeserializer.class );
         return new DefaultKafkaConsumerFactory<>(properties);
     }
 
     @Bean
-    public ConcurrentKafkaListenerContainerFactory<String, Pedido>
+    public ConcurrentKafkaListenerContainerFactory<String, PedidoCanceladoEvent>
      pedidoCanceladoKafkaListenerContainerFactory() {
-        ConcurrentKafkaListenerContainerFactory<String, Pedido> factory =
+        ConcurrentKafkaListenerContainerFactory<String, PedidoCanceladoEvent> factory =
                 new ConcurrentKafkaListenerContainerFactory<>();
 
         factory.setConsumerFactory(pedidoCanceladoConsumerFactory());
