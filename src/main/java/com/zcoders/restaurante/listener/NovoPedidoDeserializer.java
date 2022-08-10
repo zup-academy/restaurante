@@ -13,10 +13,8 @@ public class NovoPedidoDeserializer implements Deserializer<NovoPedidoEvent> {
     @Override
     public NovoPedidoEvent deserialize(String s, byte[] data) {
         try {
-            System.out.println("AAAAAAAAAAA");
             return objectMapper.readValue(data, NovoPedidoEvent.class);
         } catch (IOException e) {
-            System.out.println("BBBBBBBBBBBBB");
             throw new SerializationException(e);
         }
     }

@@ -3,9 +3,13 @@ package com.zcoders.restaurante.listener;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+import com.zcoders.restaurante.model.Item;
+import com.zcoders.restaurante.model.Pedido;
+import com.zcoders.restaurante.model.StatusPedido;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class NovoPedidoEvent {
 
@@ -20,6 +24,8 @@ public class NovoPedidoEvent {
     private LocalDateTime dataCriado;
 
     private List<ItemEvent> itens;
+
+    private StatusPedido status;
 
     public NovoPedidoEvent() {
     }
@@ -64,6 +70,10 @@ public class NovoPedidoEvent {
         this.itens = itens;
     }
 
+    public void setStatus(StatusPedido status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "NovoPedidoEvent{" +
@@ -73,5 +83,10 @@ public class NovoPedidoEvent {
                 ", dataCriado=" + dataCriado +
                 ", itens=" + itens +
                 '}';
+    }
+
+    public Pedido toModel() {
+        return new Pedido(this.id, this.idCliente,
+                this.idRestaurante, this.dataCriado, this.status);
     }
 }

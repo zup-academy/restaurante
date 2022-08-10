@@ -13,10 +13,8 @@ public class PedidoCanceladoDeserializer implements Deserializer<PedidoCancelado
     @Override
     public PedidoCanceladoEvent deserialize(String s, byte[] data) {
         try {
-            System.out.println("AAAAAAAAAAA");
             return objectMapper.readValue(data, PedidoCanceladoEvent.class);
         } catch (IOException e) {
-            System.out.println("BBBBBBBBBBBBB");
             throw new SerializationException(e);
         }
     }

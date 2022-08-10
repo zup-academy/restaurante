@@ -3,10 +3,10 @@ package com.zcoders.restaurante.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 public class Pedido {
@@ -21,18 +21,23 @@ public class Pedido {
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime dataCriado;
 
-    @OneToMany(mappedBy = "pedido")
-    private List<Item> items;
+
+    @Enumerated(EnumType.STRING)
+    private StatusPedido status;
 
     public Pedido() {
     }
 
-    public Pedido(Long id, Long idCliente, Long idRestaurante, LocalDateTime dataCriado, List<Item> items) {
+    public Pedido(Long id, Long idCliente, Long idRestaurante, LocalDateTime dataCriado, StatusPedido status) {
         this.id = id;
         this.idCliente = idCliente;
         this.idRestaurante = idRestaurante;
         this.dataCriado = dataCriado;
-        this.items = items;
+        this.status = status;
+    }
+
+    public void cancelar() {
+        this.status = StatusPedido.CANCELADO;
     }
 
     @Override
