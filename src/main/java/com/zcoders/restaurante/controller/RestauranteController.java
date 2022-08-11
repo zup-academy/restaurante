@@ -13,13 +13,16 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/clientes")
+@RequestMapping("/restaurantes")
 public class RestauranteController {
 
     Logger logger = LoggerFactory.getLogger(RestauranteController.class);
 
-    @Autowired
     private RestauranteRepository restauranteRepository;
+
+    public RestauranteController(RestauranteRepository restauranteRepository) {
+        this.restauranteRepository = restauranteRepository;
+    }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
