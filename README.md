@@ -2,10 +2,6 @@
 
 Porta do serviço 8081
 
-## API
+Documentação das apis :
 
-### Restaurante
-
-```shell
-
-```
+http://localhost:8080/swagger-ui/index.html
